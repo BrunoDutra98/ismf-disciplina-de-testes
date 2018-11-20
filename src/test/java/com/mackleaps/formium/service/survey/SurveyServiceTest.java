@@ -35,7 +35,7 @@ public class SurveyServiceTest {
     }
 
     @Test(expected = ComponentNotFoundException.class)
-    public void shouldThrowExceptionWhenEditingAndSurveyDoesNotExist () {
+    public void enquantoNaoExistirId() {
 
         final Long NOT_EXISTING_ID = 5L;
 
@@ -43,22 +43,22 @@ public class SurveyServiceTest {
 
         Survey survey = new Survey();
         survey.setId(NOT_EXISTING_ID);
-        survey.setTitle("New title");
-        survey.setDescription("New description");
-        survey.setPrefix("New prefix");
+        survey.setTitle("Novo titulo");
+        survey.setDescription("Nova descrição");
+        survey.setPrefix("Novo prefixo");
 
         surveyService.editSurvey(survey);
     }
 
     @Test
-    public void shouldReturnSurveyWithEditedValuesIfEverythingWentOkWhenEditing () {
+    public void devolvendoValoresCertosAposEdicao () {
 
         Long EXISTING_ID = 1L;
 
         Survey existing = new Survey();
-        existing.setPrefix("Prefix");
-        existing.setTitle("Title");
-        existing.setDescription("Description");
+        existing.setPrefix("Prefixo");
+        existing.setTitle("Titulo");
+        existing.setDescription("Descrição");
         existing.setId(EXISTING_ID);
 
         when(surveyRepository.exists(EXISTING_ID)).thenReturn(true);
@@ -72,7 +72,7 @@ public class SurveyServiceTest {
     }
 
     @Test(expected = ComponentNotFoundException.class)
-    public void shouldThrowExceptionWhenTryingToDeleteANonExistingComponent () {
+    public void enquantoTentarExcluirUmComponenteNaoExistente () {
 
         Long NOT_EXISTING_SURVEY_ID = 5L;
         when(surveyRepository.exists(NOT_EXISTING_SURVEY_ID)).thenThrow(new ComponentNotFoundException());
@@ -82,17 +82,17 @@ public class SurveyServiceTest {
       
   
     @Test
-    public void shouldAddSurvey() {
+    public void adicionarPesquisa() {
         
         Survey survey = new Survey();
-        survey.setPrefix("Prefix");
-        survey.setTitle("Title");
-        survey.setDescription("Description");
+        survey.setPrefix("Prefixo");
+        survey.setTitle("Titulo");
+        survey.setDescription("Descrição");
         
         Survey surveyCompare = new Survey();
-        surveyCompare.setPrefix("Prefix");
-        surveyCompare.setTitle("Title");
-        surveyCompare.setDescription("Description");
+        surveyCompare.setPrefix("Prefixo");
+        surveyCompare.setTitle("Titulo");
+        surveyCompare.setDescription("Descrição");
         
         when(surveyRepository.saveAndFlush(survey)).thenReturn(survey);
         
@@ -103,12 +103,12 @@ public class SurveyServiceTest {
      }
     
     @Test
-    public void shouldEditSurvey() {
+    public void editarPesquisa() {
         Long EXISTING_ID = 1L;
          Survey existing = new Survey();
-        existing.setPrefix("Prefix");
-        existing.setTitle("Title");
-        existing.setDescription("Description");
+        existing.setPrefix("Prefixo");
+        existing.setTitle("Titulo");
+        existing.setDescription("Descrição");
         existing.setId(EXISTING_ID);
          when(surveyRepository.exists(EXISTING_ID)).thenReturn(true);
         when(surveyRepository.saveAndFlush(existing)).thenReturn(existing);
@@ -122,17 +122,17 @@ public class SurveyServiceTest {
     
     
     @Test
-    public void shouldGetASurvey() {
+    public void obtendoPesquisa() {
         Long EXISTING_ID = 1L;
          Survey existing = new Survey();
-        existing.setPrefix("Prefix");
-        existing.setTitle("Title");
-        existing.setDescription("Description");
+        existing.setPrefix("Prefixo");
+        existing.setTitle("Titulo");
+        existing.setDescription("Descrição");
         
         Survey surveyCompare = new Survey();
-        surveyCompare.setPrefix("Prefix");
-        surveyCompare.setTitle("Title");
-        surveyCompare.setDescription("Description");
+        surveyCompare.setPrefix("Prefixo");
+        surveyCompare.setTitle("Titulo");
+        surveyCompare.setDescription("Descrição");
          when(surveyRepository.exists(EXISTING_ID)).thenReturn(true);
         when(surveyRepository.getOne(EXISTING_ID)).thenReturn(existing);
         
@@ -144,18 +144,18 @@ public class SurveyServiceTest {
     }
     
     @Test(expected = ComponentNotFoundException.class)
-    public void shouldFailWhenGetSurveyForUseWithNoRepo() {
+    public void falhandoPesquisaSemRepositorio() {
         Long EXISTING_ID = 1L;
          Survey existing = new Survey();
-        existing.setPrefix("Prefix");
-        existing.setTitle("Title");
-        existing.setDescription("Description");
+        existing.setPrefix("Prefixo");
+        existing.setTitle("Titulo");
+        existing.setDescription("Descrição");
         existing.setId(EXISTING_ID);
         
         Survey surveyCompare = new Survey();
-        surveyCompare.setPrefix("Prefix");
-        surveyCompare.setTitle("Title");
-        surveyCompare.setDescription("Description");
+        surveyCompare.setPrefix("Prefixo");
+        surveyCompare.setTitle("Titulo");
+        surveyCompare.setDescription("Descrição");
         existing.setId(EXISTING_ID);
          when(surveyRepository.exists(EXISTING_ID)).thenReturn(true);
         when(surveyRepository.getOne(EXISTING_ID)).thenReturn(existing);
@@ -164,18 +164,18 @@ public class SurveyServiceTest {
     }
     
     @Test
-    public void shouldGetSurveyForUse() {
+    public void obterPesquisaParaOUso() {
         Long EXISTING_ID = 1L;
          Survey existing = new Survey();
-        existing.setPrefix("Prefix");
-        existing.setTitle("Title");
-        existing.setDescription("Description");
+        existing.setPrefix("Prefixo");
+        existing.setTitle("Titulo");
+        existing.setDescription("Descrição");
         existing.setId(EXISTING_ID);
         
         Survey surveyCompare = new Survey();
-        surveyCompare.setPrefix("Prefix");
-        surveyCompare.setTitle("Title");
-        surveyCompare.setDescription("Description");
+        surveyCompare.setPrefix("Prefixo");
+        surveyCompare.setTitle("Titulo");
+        surveyCompare.setDescription("Descrição");
         existing.setId(EXISTING_ID);
          when(surveyRepository.exists(EXISTING_ID)).thenReturn(true);
         when(surveyRepository.saveAndFlush(existing)).thenReturn(existing);
