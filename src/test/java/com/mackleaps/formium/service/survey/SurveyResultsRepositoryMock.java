@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  *
- * @author LGPereira
+ * @author spk
  */
 public abstract class SurveyResultsRepositoryMock implements SurveyResultsRepository {
 
