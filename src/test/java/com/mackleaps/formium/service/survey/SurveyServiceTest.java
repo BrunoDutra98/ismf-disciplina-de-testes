@@ -115,6 +115,25 @@ public class SurveyServiceTest {
     
     
     
+      
+    @Test
+    public void editarPesquisa() {
+        Long EXISTING_ID = 1L;
+         Survey existing = new Survey();
+        existing.setPrefix("Prefixo");
+        existing.setTitle("Titulo");
+        existing.setDescription("Descrição");
+        existing.setId(EXISTING_ID);
+         when(surveyRepository.exists(EXISTING_ID)).thenReturn(true);
+        when(surveyRepository.saveAndFlush(existing)).thenReturn(existing);
+        
+        surveyService.editSurvey(existing);
+         Survey editedSurvey = surveyService.editSurvey(existing);
+         assertEquals(existing.getTitle(), editedSurvey.getTitle());
+        assertEquals(existing.getPrefix(), editedSurvey.getPrefix());
+        assertEquals(existing.getDescription(), editedSurvey.getDescription());
+    }
+    
     
     
     
