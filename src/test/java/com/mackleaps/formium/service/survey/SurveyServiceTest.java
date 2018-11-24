@@ -90,6 +90,28 @@ public class SurveyServiceTest {
     }
       
     
+      @Test
+    public void adicionarPesquisa() {
+        
+        Survey survey = new Survey();
+        survey.setPrefix("Prefixo");
+        survey.setTitle("Titulo");
+        survey.setDescription("Descrição");
+        
+        Survey surveyCompare = new Survey();
+        surveyCompare.setPrefix("Prefixo");
+        surveyCompare.setTitle("Titulo");
+        surveyCompare.setDescription("Descrição");
+        
+        when(surveyRepository.saveAndFlush(survey)).thenReturn(survey);
+        
+        surveyService.addSurvey(survey);
+         assertEquals(survey.getTitle(), surveyCompare.getTitle());
+        assertEquals(survey.getPrefix(), surveyCompare.getPrefix());
+        assertEquals(survey.getDescription(), surveyCompare.getDescription());
+     }
+    
+    
     
     
     
