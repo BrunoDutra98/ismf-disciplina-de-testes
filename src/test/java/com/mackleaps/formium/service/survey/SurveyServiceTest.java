@@ -165,6 +165,26 @@ public class SurveyServiceTest {
     
     
     
+    
+    @Test(expected = ComponentNotFoundException.class)
+    public void falhandoPesquisaSemRepositorio() {
+        Long EXISTING_ID = 1L;
+         Survey existing = new Survey();
+        existing.setPrefix("Prefixo");
+        existing.setTitle("Titulo");
+        existing.setDescription("Descrição");
+        existing.setId(EXISTING_ID);
+        
+        Survey surveyCompare = new Survey();
+        surveyCompare.setPrefix("Prefixo");
+        surveyCompare.setTitle("Titulo");
+        surveyCompare.setDescription("Descrição");
+        existing.setId(EXISTING_ID);
+         when(surveyRepository.exists(EXISTING_ID)).thenReturn(true);
+        when(surveyRepository.getOne(EXISTING_ID)).thenReturn(existing);
+        
+        surveyService.getSurveyForUse(EXISTING_ID);
+    }
 
 }
 
