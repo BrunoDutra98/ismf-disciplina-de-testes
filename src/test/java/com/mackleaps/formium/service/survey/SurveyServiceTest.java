@@ -49,6 +49,60 @@ public class SurveyServiceTest {
 
         surveyService.editSurvey(survey);
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @Test
+    public void devolvendoValoresCertosAposEdicao () {
+
+        Long EXISTING_ID = 1L;
+
+        Survey existing = new Survey();
+        existing.setPrefix("Prefixo");
+        existing.setTitle("Titulo");
+        existing.setDescription("Descrição");
+        existing.setId(EXISTING_ID);
+
+        when(surveyRepository.exists(EXISTING_ID)).thenReturn(true);
+        when(surveyRepository.saveAndFlush(existing)).thenReturn(existing);
+
+        Survey editedSurvey = surveyService.editSurvey(existing);
+
+        assertEquals(existing.getTitle(), editedSurvey.getTitle());
+        assertEquals(existing.getPrefix(), editedSurvey.getPrefix());
+        assertEquals(existing.getDescription(), editedSurvey.getDescription());
+    }
+
+    @Test(expected = ComponentNotFoundException.class)
+    public void enquantoTentarExcluirUmComponenteNaoExistente () {
+
+        Long NOT_EXISTING_SURVEY_ID = 5L;
+        when(surveyRepository.exists(NOT_EXISTING_SURVEY_ID)).thenThrow(new ComponentNotFoundException());
+
+        surveyService.deleteSurvey(NOT_EXISTING_SURVEY_ID);
+    }
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }
 
