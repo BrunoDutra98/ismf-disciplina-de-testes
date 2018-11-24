@@ -139,6 +139,27 @@ public class SurveyServiceTest {
     
     
     
+    @Test
+    public void obtendoPesquisa() {
+        Long EXISTING_ID = 1L;
+         Survey existing = new Survey();
+        existing.setPrefix("Prefixo");
+        existing.setTitle("Titulo");
+        existing.setDescription("Descrição");
+        
+        Survey surveyCompare = new Survey();
+        surveyCompare.setPrefix("Prefixo");
+        surveyCompare.setTitle("Titulo");
+        surveyCompare.setDescription("Descrição");
+         when(surveyRepository.exists(EXISTING_ID)).thenReturn(true);
+        when(surveyRepository.getOne(EXISTING_ID)).thenReturn(existing);
+        
+        surveyService.getSurvey(EXISTING_ID);
+        
+        assertEquals(existing.getTitle(), surveyCompare.getTitle());
+        assertEquals(existing.getPrefix(), surveyCompare.getPrefix());
+        assertEquals(existing.getDescription(), surveyCompare.getDescription());
+    }
     
     
     
